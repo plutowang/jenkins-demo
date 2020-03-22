@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Test') {
+            steps {
+                sh 'echo "Fail!"; exit 1'
+            }
+        }
+    }
+    post {
+        always {
+            echo "====++++always++++===="
+        }
+        success {
+            echo "====++++only when successful++++===="
+        }
+        failure {
+            echo "====++++only when failed++++===="
+        }
+        unstable {
+            echo "====++++only when unstable++++===="
+        }
+    }
+}
